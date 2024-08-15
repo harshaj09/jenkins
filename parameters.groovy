@@ -1,5 +1,8 @@
 pipeline {
     agent any 
+    environment {
+        GIT_CREDS = credentials('harsha-github-creds')
+    }
     parameters {
         string(name: "NAME", defaultValue: "Harsha", description: "Name of the person")
         choice(name: "ENV", choices: ['dev', 'test', 'prod'], description: "In which environment you want to deploy the application")
@@ -14,7 +17,9 @@ pipeline {
                 echo "Deploy the application in ${params.ENV}"
                 echo "Are scans happening: ${params.TOGGLE}"
                 echo "Fixes done in the release: ${params.PARA}"
-                echo "Entered password is: ${params.PASSWD}"
+                echo "GitHub credentials are: ${GIT_CREDS}"
+                echo "GitHub username is : ${GIT_CREDS_USR}"
+                echo "Entered password is: ${GIT_CREDS_PSW}"
             }
         }
     }
