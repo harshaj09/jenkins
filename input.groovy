@@ -24,7 +24,8 @@ pipeline {
         stage ('deployToPrd') {
             steps {
                 timeout (time: 150, unit: 'SECONDS') {
-                    input message: "Would you like to promote to Prod?", ok: 'yes', submitter: 'padmaja, mani'
+                    input message: "Would you like to promote to Prod?", ok: 'yes', submitter: 'padmaja, mani' // multiple approvers
+                    // input message: "Would you like to promote to Prod?", ok: 'yes', submitter: 'padmaja'
                 }
                 echo "deply the application in Prod"
             }
